@@ -78,9 +78,9 @@ module.exports = {
       await mongoose.connect(process.env.DB_HOST);
 
       const db = require(`./Schemas/${collection}`);
-      const [result] = await db.find().sort({ postId: 'desc' }).limit(1);
+      const result = await db.find().sort({ postId: 'desc' }).limit(1);
 
-      return result.postId + 1;
+      return result.postId ?? 0 + 1;
     } catch (err) {
       return err;
     } finally {
@@ -92,9 +92,9 @@ module.exports = {
       await mongoose.connect(process.env.DB_HOST);
 
       const db = require(`./Schemas/${collection}`);
-      const [result] = await db.find().sort({ commentId: 'desc' }).limit(1);
+      const result = await db.find().sort({ commentId: 'desc' }).limit(1);
 
-      return result.commentId + 1;
+      return result.commentId ?? 0 + 1;
     } catch (err) {
       return err;
     } finally {
