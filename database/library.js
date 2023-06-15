@@ -80,7 +80,7 @@ module.exports = {
       const db = require(`./Schemas/${collection}`);
       const result = await db.find().sort({ postId: 'desc' }).limit(1);
 
-      return (result.postId ?? 0) + 1;
+      return result.length ? result[0].postId + 1 : 1;
     } catch (err) {
       return err;
     } finally {
@@ -94,7 +94,7 @@ module.exports = {
       const db = require(`./Schemas/${collection}`);
       const result = await db.find().sort({ commentId: 'desc' }).limit(1);
 
-      return (result.commentId ?? 0) + 1;
+      return result.length ? result[0].commentId + 1 : 1;
     } catch (err) {
       return err;
     } finally {
