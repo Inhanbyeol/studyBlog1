@@ -8,7 +8,7 @@ app.post('/create', async (req, res) => {
   try {
     return res.json(await db.create('comment', { ...req.body, commentId: await db.createCommentId('comment') }));
   } catch (err) {
-    return res.json((await db.createCommentId('comment')) + err);
+    return res.json(err);
   }
 });
 
