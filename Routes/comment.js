@@ -6,10 +6,9 @@ const db = require('../database/library');
 //create
 app.post('/create', async (req, res) => {
   try {
-    console.log(await db.createCommentId('comment'));
     return res.json(await db.create('comment', { ...req.body, commentId: await db.createCommentId('comment') }));
   } catch (err) {
-    return res.json(err);
+    return res.json((await db.createCommentId('comment')) + err);
   }
 });
 
