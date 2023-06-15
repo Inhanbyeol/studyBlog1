@@ -5,17 +5,29 @@ const db = require('../database/library');
 
 //create
 app.post('/create', async (req, res) => {
-  return res.json(await db.create('comment', { ...req.body, commentId: await db.createCommentId('comment') }));
+  try {
+    return res.json(await db.create('comment', { ...req.body, commentId: await db.createCommentId('comment') }));
+  } catch (err) {
+    return res.json(err);
+  }
 });
 
 //update
 app.patch('/update', async (req, res) => {
-  return res.json(await db.updateOne('post', { postId: req.body.postId }, req.body));
+  try {
+    return res.json(await db.updateOne('post', { postId: req.body.postId }, req.body));
+  } catch (err) {
+    return res.json(err);
+  }
 });
 
 //delete
 app.delete('/delete', async (req, res) => {
-  return res.json(await db.deleteOne('comment', req.body));
+  try {
+    return res.json(await db.deleteOne('comment', req.body));
+  } catch (err) {
+    return res.json(err);
+  }
 });
 
 module.exports = app;

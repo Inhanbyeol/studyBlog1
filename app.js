@@ -6,10 +6,6 @@ const app = express();
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 
-app.use(express.static('views/static'));
-app.set('view engine', 'ejs');
-app.set('views', './views');
-
 app.use('/', require('./Routes/index'));
 app.use('/post', require('./Routes/post'));
 app.use('/comment', require('./Routes/comment'));

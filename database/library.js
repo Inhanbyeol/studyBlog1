@@ -2,17 +2,16 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 module.exports = {
-  create: async (collection, sql) => {
+  create: async (collection, sql, option) => {
     try {
       await mongoose.connect(process.env.DB_HOST);
 
       const db = require(`./Schemas/${collection}`);
-      const result = await db.create(sql);
+      const result = await db.create(sql, option);
 
       return result;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
@@ -26,8 +25,7 @@ module.exports = {
 
       return result;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
@@ -41,38 +39,35 @@ module.exports = {
 
       return result;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
   },
-  updateOne: async (collection, sql, sql2) => {
+  updateOne: async (collection, sql, option) => {
     try {
       await mongoose.connect(process.env.DB_HOST);
 
       const db = require(`./Schemas/${collection}`);
-      const result = await db.updateOne(sql, sql2);
+      const result = await db.updateOne(sql, option);
 
       return result;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
   },
-  deleteOne: async (collection, sql) => {
+  deleteOne: async (collection, sql, option) => {
     try {
       await mongoose.connect(process.env.DB_HOST);
 
       const db = require(`./Schemas/${collection}`);
-      const result = await db.deleteOne(sql);
+      const result = await db.deleteOne(sql, option);
 
       return result;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
@@ -87,8 +82,7 @@ module.exports = {
 
       return result.postId + 1;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
@@ -102,8 +96,7 @@ module.exports = {
 
       return result.commentId + 1;
     } catch (err) {
-      console.log(err);
-      return 0;
+      return err;
     } finally {
       await mongoose.disconnect();
     }
