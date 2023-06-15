@@ -15,7 +15,7 @@ app.post('/create', async (req, res) => {
 //update
 app.patch('/update', async (req, res) => {
   try {
-    return res.json(await db.updateOne('post', { postId: req.body.postId }, req.body));
+    return res.json(await db.updateOne('comment', { commentId: req.body.commentId }, req.body));
   } catch (err) {
     return res.json(err);
   }
