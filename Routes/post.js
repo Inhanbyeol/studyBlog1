@@ -33,7 +33,7 @@ app.patch('/update', async (req, res) => {
 //delete
 app.delete('/delete', async (req, res) => {
   try {
-    return res.json(await db.deleteOne('post', req.body));
+    return res.json(await db.deleteOne('post', { postId: req.body.postId, password: req.body.password }));
   } catch (err) {
     return res.json(err);
   }

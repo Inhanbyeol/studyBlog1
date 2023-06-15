@@ -24,7 +24,7 @@ app.patch('/update', async (req, res) => {
 //delete
 app.delete('/delete', async (req, res) => {
   try {
-    return res.json(await db.deleteOne('comment', req.body));
+    return res.json(await db.deleteOne('comment', { commentId: req.body.commentId, password: req.body.password }));
   } catch (err) {
     return res.json(err);
   }
